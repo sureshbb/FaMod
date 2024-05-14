@@ -4,6 +4,9 @@ plugins {
     id 'maven-publish'
 }
 
+def artifactId = "devmod"
+def groupId = "com.stardev.devmod"
+
 android {
     namespace 'com.stardev.devmod'
     compileSdk 33
@@ -40,4 +43,19 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+//                artifact bundleReleaseAar
+                setGroupId groupId
+                setArtifactId artifactId
+                //version android.defaultConfig.versionName
+            }
+        }
+    }
 }
