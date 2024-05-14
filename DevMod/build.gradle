@@ -48,13 +48,11 @@ dependencies {
 afterEvaluate {
     publishing {
         publications {
-            // Creates a Maven publication called "release".
             release(MavenPublication) {
                 from components.release
-//                artifact bundleReleaseAar
-                setGroupId groupId
-                setArtifactId artifactId
-                //version android.defaultConfig.versionName
+                groupId = groupId
+                artifactId = artifactId
+                version = '1'
             }
         }
     }
